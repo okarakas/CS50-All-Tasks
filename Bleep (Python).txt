@@ -1,0 +1,28 @@
+from cs50 import get_string
+from sys import argv
+
+def main():
+
+    # TODO
+    if len(argv) != 2:
+        print("Usage: python bleep.py dictionary")
+        exit(1)
+        
+    file = open(argv[1])
+    setOfBannedWords = set()
+    for line in file:
+        setOfBannedWords.add(line.strip().lower())
+        
+    inputString = get_string("What message would you like to censor?\n")
+    outputString = ""
+    words = inputString.split()
+    
+    for word in words:
+        if word.lower() in setOfBannedWords:
+            outputString += "*" * len(word) + " "
+        else:
+            outputString += word + " "
+    print(outputString.strip())
+        
+if __name__ == "__main__":
+    main()

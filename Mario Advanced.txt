@@ -1,0 +1,49 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int get_p_int(string prompt);
+
+int main(void)
+{
+    int n;
+    goBack:
+    n = get_p_int("Positive integer: ");
+    
+    if(n>0 && n<9)
+    {
+        for (int i=0; i<n; i++)
+        {
+            for (int k=n-i; k>1; k--)
+            {
+                printf(" ");
+            }
+            for (int j=0; j<i+1; j++)
+            {
+                printf("#");
+            }
+            printf("  ");
+            for (int j=0; j<i+1; j++)
+            {
+                printf("#");
+            }
+            printf("\n");
+        }
+    }
+    else
+    {
+        printf("Try Again...\n");
+        goto goBack;
+    }
+}
+
+// Prompt user for positive integer
+int get_p_int(string prompt)
+{
+    int n;
+    do
+    {
+        n = get_int("%s", prompt);
+    }
+    while (n<1 || n>8);
+    return n;
+}
